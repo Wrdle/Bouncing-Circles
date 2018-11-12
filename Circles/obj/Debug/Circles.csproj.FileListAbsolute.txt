@@ -1,0 +1,10 @@
+C:\Users\Matt\source\repos\Circles\Circles\bin\Debug\Circles.exe.config
+C:\Users\Matt\source\repos\Circles\Circles\bin\Debug\Circles.exe
+C:\Users\Matt\source\repos\Circles\Circles\bin\Debug\Circles.pdb
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.csprojAssemblyReference.cache
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.Form1.resources
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.Properties.Resources.resources
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.csproj.GenerateResource.cache
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.csproj.CoreCompileInputs.cache
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.exe
+C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.pdb
