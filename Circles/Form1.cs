@@ -33,7 +33,7 @@ namespace Circles
             Random rand = new Random();
             for (int x = 0; x < 1; x++)
             {
-                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), 1, 1);
+                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
                 circles.Add(circle);
             }
         }

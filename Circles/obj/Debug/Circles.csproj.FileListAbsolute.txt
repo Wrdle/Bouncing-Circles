@@ -8,3 +8,13 @@ C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.csproj.GenerateReso
 C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.csproj.CoreCompileInputs.cache
 C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.exe
 C:\Users\Matt\source\repos\Circles\Circles\obj\Debug\Circles.pdb
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\bin\Debug\Circles.exe.config
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\bin\Debug\Circles.exe
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\bin\Debug\Circles.pdb
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.csprojResolveAssemblyReference.cache
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.Form1.resources
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.Properties.Resources.resources
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.csproj.GenerateResource.Cache
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.csproj.CoreCompileInputs.cache
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.exe
+D:\Libraries\Documents\GitHub\Bouncing-Circles\Circles\obj\Debug\Circles.pdb
