@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
@@ -14,24 +9,21 @@ namespace Circles
     public partial class Form1 : Form
     {
         public List<Circle> circles = new List<Circle>();
-        public Graphics g;
+        Graphics g;
+        int iCircles = 4;
+        int iRadius = 300;
+        Thread drawCircles;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Thread drawCircles = new Thread(new System.Threading.ThreadStart(animateCircles));
-            drawCircles.Start();
-        }
-
         public void generateCircles()
         {
             circles.Clear();
             Random rand = new Random();
-            for (int x = 0; x < 1; x++)
+            for (int x = 0; x < iCircles; x++)
             {
                 Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
                 circles.Add(circle);
@@ -41,14 +33,18 @@ namespace Circles
         public void animateCircles()
         {
             g = canvas.CreateGraphics();
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             generateCircles();
             Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+            Pen pen = new Pen(Color.Black, 3);
 
-            for (int iterations = 0; iterations < 1500; iterations++)
+            while (true)
             {
                 Random rand = new Random();
-                for (int x = 0; x < 1; x++)
+                for (int x = 0; x < iCircles; x++)
                 {
+                    List<Point> lines = new List<Point>();
+
                     int newXPos = circles[x].xDir;
                     int newYPos = circles[x].yDir;
                     if (circles[x].yPos <= 0)
@@ -70,47 +66,33 @@ namespace Circles
                     Circle circle = new Circle(circles[x].xPos + newXPos, circles[x].yPos + newYPos, newXPos, newYPos);
                     circles[x] = circle;
                     g.FillCircle(myBrush, circles[x].xPos, circles[x].yPos, 5);
+                    foreach (Circle c in circles)
+                    {
+                        if (circles[x].xPos - c.xPos < iRadius && circles[x].yPos - c.yPos < iRadius)
+                        {
+                            if (circles[x].xPos - c.xPos > - iRadius && circles[x].yPos - c.yPos > -iRadius)
+                            {
+                                lines.Add(new Point(circles[x].xPos, circles[x].yPos));
+                                lines.Add(new Point(c.xPos, c.yPos));
+                            }
+                        }
+                    }
+                    g.DrawLines(pen, lines.ToArray());
                 }
                 Thread.Sleep(5);
                 g.Clear(Color.White);
             }
         }
-    }
 
-    public struct Circle
-    {
-        public int xPos;
-        public int yPos;
-        public int xDir;
-        public int yDir;
-
-       public Circle(int _xPos, int _yPos, int _xDir, int _yDir)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            xPos = _xPos;
-            yPos = _yPos;
-            xDir = _xDir;
-            yDir = _yDir;
-        }
-    }
-
-
-    public static class GraphicsExtensions
-    {
-        public static void DrawCircle(this Graphics g, Pen pen,
-                                      float centerX, float centerY, float radius)
-        {
-            g.DrawEllipse(pen, centerX - radius, centerY - radius,
-                          radius + radius, radius + radius);
+            drawCircles = new Thread(new System.Threading.ThreadStart(animateCircles));
+            drawCircles.Start();
         }
 
-        public static void FillCircle(this Graphics g, Brush brush,
-                                      float centerX, float centerY, float radius)
+        private void btnStop_Click(object sender, EventArgs e)
         {
-                g.FillEllipse(brush, centerX - radius, centerY - radius, radius + radius, radius + radius);
-        }
-        public static void clearScreen(this Graphics g)
-        {
-            g.Clear(Color.White);
+            drawCircles.Abort();
         }
     }
 }
