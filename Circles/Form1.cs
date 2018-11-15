@@ -10,7 +10,7 @@ namespace Circles
     {
         public List<Circle> circles = new List<Circle>();
         Graphics g;
-        int iCircles = 4;
+        int iCircles = 14;
         int iRadius = 300;
         Thread drawCircles;
 
@@ -25,7 +25,7 @@ namespace Circles
             Random rand = new Random();
             for (int x = 0; x < iCircles; x++)
             {
-                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
+                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), ((rand.Next(0, 1000) - 500)/20.0), ((rand.Next(0, 1000) - 500) / 20.0));
                 circles.Add(circle);
             }
         }
@@ -43,37 +43,37 @@ namespace Circles
                 Random rand = new Random();
                 for (int x = 0; x < iCircles; x++)
                 {
-                    List<Point> lines = new List<Point>();
+                    List<PointF> lines = new List<PointF>();
 
-                    int newXPos = circles[x].xDir;
-                    int newYPos = circles[x].yDir;
+                    double newXPos = circles[x].xDir;
+                    double newYPos = circles[x].yDir;
                     if (circles[x].yPos <= 0)
                     {
-                        newYPos = 1;
+                        newYPos = -newYPos;
                     }
                     if (circles[x].yPos >= canvas.Height)
                     {
-                        newYPos = -1;
+                        newYPos = -newYPos;
                     }
                     if (circles[x].xPos <= 0)
                     {
-                        newXPos = 1;
+                        newXPos = -newXPos;
                     }
                     if (circles[x].xPos >= canvas.Width)
                     {
-                        newXPos = -1;
+                        newXPos = -newXPos;
                     }
                     Circle circle = new Circle(circles[x].xPos + newXPos, circles[x].yPos + newYPos, newXPos, newYPos);
                     circles[x] = circle;
-                    g.FillCircle(myBrush, circles[x].xPos, circles[x].yPos, 5);
+                    g.FillCircle(myBrush, (float)circles[x].xPos, (float)circles[x].yPos, 5);
                     foreach (Circle c in circles)
                     {
                         if (circles[x].xPos - c.xPos < iRadius && circles[x].yPos - c.yPos < iRadius)
                         {
                             if (circles[x].xPos - c.xPos > - iRadius && circles[x].yPos - c.yPos > -iRadius)
                             {
-                                lines.Add(new Point(circles[x].xPos, circles[x].yPos));
-                                lines.Add(new Point(c.xPos, c.yPos));
+                                lines.Add(new PointF((float)circles[x].xPos, (float)circles[x].yPos));
+                                lines.Add(new PointF((float)c.xPos, (float)c.yPos));
                             }
                         }
                     }
