@@ -2,12 +2,12 @@
 {
     public struct Circle
     {
-        public int xPos;
-        public int yPos;
-        public int xDir;
-        public int yDir;
+        public double xPos;
+        public double yPos;
+        public double xDir;
+        public double yDir;
 
-        public Circle(int _xPos, int _yPos, int _xDir, int _yDir)
+        public Circle(double _xPos, double _yPos, double _xDir, double _yDir)
         {
             xPos = _xPos;
             yPos = _yPos;
