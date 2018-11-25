@@ -10,14 +10,9 @@ namespace Circles
     {
         public List<Circle> circles = new List<Circle>();
         Graphics g;
-<<<<<<< HEAD
-        int iCircles = 30;
-        int iRadius = 100;
-=======
         int iCircles = 14;
         int iRadius = 300;
->>>>>>> origin/GraphicalImprovements
-        Thread drawCircles;
+        Thread drawCircles = new Thread(new System.Threading.ThreadStart(animateCircles));
 
         public Form1()
         {
@@ -30,11 +25,7 @@ namespace Circles
             Random rand = new Random();
             for (int x = 0; x < iCircles; x++)
             {
-<<<<<<< HEAD
                 Circle circle = new Circle(rand.Next(1, canvas.Width), rand.Next(1, canvas.Height), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
-=======
-                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), ((rand.Next(0, 1000) - 500)/20.0), ((rand.Next(0, 1000) - 500) / 20.0));
->>>>>>> origin/GraphicalImprovements
                 circles.Add(circle);
             }
         }
@@ -102,6 +93,14 @@ namespace Circles
         private void btnStop_Click(object sender, EventArgs e)
         {
             drawCircles.Abort();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (drawCircles.IsAlive == true)
+            {
+                drawCircles.Abort();
+            }
         }
     }
 }
