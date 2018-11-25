@@ -10,8 +10,8 @@ namespace Circles
     {
         public List<Circle> circles = new List<Circle>();
         Graphics g;
-        int iCircles = 4;
-        int iRadius = 300;
+        int iCircles = 30;
+        int iRadius = 100;
         Thread drawCircles;
 
         public Form1()
@@ -25,7 +25,7 @@ namespace Circles
             Random rand = new Random();
             for (int x = 0; x < iCircles; x++)
             {
-                Circle circle = new Circle(rand.Next(1, 300), rand.Next(1, 300), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
+                Circle circle = new Circle(rand.Next(1, canvas.Width), rand.Next(1, canvas.Height), (rand.Next(0, 2) == 1 ? -1 : 1), (rand.Next(0, 2) == 1 ? -1 : 1));
                 circles.Add(circle);
             }
         }
@@ -79,7 +79,7 @@ namespace Circles
                     }
                     g.DrawLines(pen, lines.ToArray());
                 }
-                Thread.Sleep(5);
+                Thread.Sleep(1);
                 g.Clear(Color.White);
             }
         }
